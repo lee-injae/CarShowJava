@@ -1,8 +1,10 @@
 package com.blit.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.blit.models.Owner;
 
-public class OwnerRepository extends JpaRepository<Owner Long> {
+public interface OwnerRepository extends JpaRepository<Owner, Long> {
 
 	
 }
