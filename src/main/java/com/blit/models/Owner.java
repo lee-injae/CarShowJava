@@ -2,6 +2,9 @@ package com.blit.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +13,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Owner {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long ownerId;
@@ -18,6 +23,7 @@ public class Owner {
 	private String firstName, lastName;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	@JsonIgnore
 	private List<Car> cars;
 	
 	public List<Car> getCars() {

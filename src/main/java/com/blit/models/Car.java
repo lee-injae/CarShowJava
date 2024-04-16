@@ -5,6 +5,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -18,6 +19,7 @@ public class Car {
 	private double price;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner")
 	private Owner owner;
 	
 	public Owner getOwner() {
