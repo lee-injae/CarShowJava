@@ -47,6 +47,8 @@ public class CarShowApplication implements CommandLineRunner {
 		// Fetch all cars and log to console
 		carRepository.findAll().forEach(car -> logger.info(car.getBrand() + " " + car.getModel()));
 					
+		Car newCar = new Car("Kia", "Sorento", "purple", "55-13", 1993, 70000.23, owner1);
+		carRepository.save(newCar);
 	}
 
 }
