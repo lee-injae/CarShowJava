@@ -8,7 +8,6 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.blit.models.Car;
-import com.blit.repositories.CarRepository;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -40,6 +39,7 @@ public class CarServiceImpl implements CarService {
 	public Car updateCar(Long id, Car car) {
 		Optional<Car> optionalCar = carRepository.findById(id);
 		if (optionalCar.isPresent()) {
+			
 			optionalCar.get().setBrand(car.getBrand());
 			optionalCar.get().setModel(car.getModel());
 			optionalCar.get().setColor(car.getColor());

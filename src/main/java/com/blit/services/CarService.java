@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.blit.models.Car;
 
-@Service
 public interface CarService {
 	
 	List<Car> getCars();

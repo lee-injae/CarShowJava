@@ -18,7 +18,7 @@ public class Owner {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long ownerId;
+	private Long id;
 	
 	private String firstName, lastName;
 	
@@ -41,11 +41,11 @@ public class Owner {
 	}
 	
 	public Long getOwnerId() {
-		return ownerId;
+		return id;
 	}
 	
-	public void setOwnerId(Long ownerId) {
-		this.ownerId = ownerId;
+	public void setOwnerId(Long id) {
+		this.id = id;
 	}
 	
 	public String getFirstName() {

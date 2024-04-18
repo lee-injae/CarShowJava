@@ -12,8 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.blit.models.Car;
 import com.blit.models.Owner;
-import com.blit.repositories.CarRepository;
-import com.blit.repositories.OwnerRepository;
+import com.blit.models.User;
+import com.blit.services.CarRepository;
+import com.blit.services.OwnerRepository;
+import com.blit.services.UserRepository;
 
 @SpringBootApplication
 public class CarShowApplication implements CommandLineRunner {
@@ -22,12 +24,15 @@ public class CarShowApplication implements CommandLineRunner {
 	private CarRepository carRepository; 
 	@Autowired
 	private OwnerRepository ownerRepository;
+	@Autowired
+	private UserRepository userRepository;
 	
 	private static final Logger logger =  LoggerFactory.getLogger(CarShowApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarShowApplication.class, args);
 		logger.info("application started");
+		
 	}
 	
 	@Override 
@@ -43,12 +48,30 @@ public class CarShowApplication implements CommandLineRunner {
 	              new Car("Toyota","Camry","Silver","CDF_3123",2021,32000, owner1),
 	              new Car("Toyota","Corolla","White","DDF_3421",2023,40000, owner2)
 				);
+		
 		carRepository.saveAll(cars);
 		// Fetch all cars and log to console
 		carRepository.findAll().forEach(car -> logger.info(car.getBrand() + " " + car.getModel()));
 					
 		Car newCar = new Car("Kia", "Sorento", "purple", "55-13", 1993, 70000.23, owner1);
 		carRepository.save(newCar);
+		
+		List<Car> camry = carRepository.findCarByYear(2020);
+		System.out.println("CAMRY!!!" + camry.get(0).getModel());
+		carRepository.deleteAll(camry);
+		
+		userRepository.save(new User (
+				"user",
+				//bCrypt encoded password: userPass
+				"$2y$10$dc3e3saiBRuwAmihOB0cWe8cI./MVgKIrdq9uCukCnRXYoNgYR1e6",
+				"USER"));
+		
+		userRepository.save(new User (
+				"admin",
+				//password: adminPass
+				"$2y$10$VKlPOmlBxacyOtoGuASJuu6F0E4Gf/VfiWsVZSHlr3xHzjn9DQ68W",
+				"ADMIN"));
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.blit.repositories;
+package com.blit.services;
 
 import java.util.List;
 
@@ -18,6 +18,8 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 	List<Car> findCarByBrandAndModel(String brand, String model);
 	//fetch car by year and sort by year
 	List<Car> findCarByBrandOrderByYearAsc(String brand);
+	
+	
 	
 	
 }
